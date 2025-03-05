@@ -7,8 +7,8 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   reactStrictMode: true,
-  basePath: "/horizon-atlas", 
-  assetPrefix: "/horizon-atlas/",
+  basePath: "/horizonAtlas", 
+  assetPrefix: "/horizonAtlas",
 };
 
 export default nextConfig;
