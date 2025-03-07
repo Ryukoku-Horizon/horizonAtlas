@@ -89,7 +89,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         }
       }
     }
-
   return {
     props: {
       metadata: post.metadata,
@@ -105,7 +104,7 @@ const Post =({ metadata, mdBlocks,pageNavs,childrenData,pageId,title}: Props) =>
   const { setCurriculumId } = useCurriculumIdStore();
   useEffect(()=>{
     setCurriculumId(metadata.curriculumId);
-  },[])
+  },[metadata.curriculumId])
 
   return (
     <Layout pageNavs={pageNavs} sideNavProps={childrenData}>
@@ -116,17 +115,17 @@ const Post =({ metadata, mdBlocks,pageNavs,childrenData,pageId,title}: Props) =>
             <h2 className='w-full text-2xl font-medium'>{title}</h2>
           </div>
           <div className='border-b mt-2'></div>
-          {pageId === metadata.curriculumId && <><br />
+          {pageId === metadata.curriculumId && <>
             {metadata.tags.map((tag:string,i:number)=>(
               <p className='text-white bg-sky-500 rounded-xl font-medium mt-2 px-2 inline-block mr-2' key={i}>
                 {tag}
               </p>
             ))}
           </>}
-          <div className='mt-10 font-medium'>
-            <div>
-              {mdBlocks.map((mdBlock, i)=>(
-                <MdBlockComponent mdBlock={mdBlock} depth={0} key={i} />
+          <div className='mt-4 font-medium'>
+            <div key={pageId}>
+              {mdBlocks.map((mdBlock)=>(
+                <MdBlockComponent mdBlock={mdBlock} depth={0} key={mdBlock.blockId} />
               ))}
             </div>
           </div>
